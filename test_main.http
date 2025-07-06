@@ -9,3 +9,321 @@ GET http://127.0.0.1:8000/hello/User
 Accept: application/json
 
 ###
+
+### Admin API Tests
+
+# API Key for authentication
+@api_key = your_api_key_here
+
+### Dashboard and Analytics ###
+
+# Get dashboard statistics
+GET http://localhost:8000/admin/v2/dashboard/stats
+X-API-Key: {{api_key}}
+
+###
+
+# Get sales analytics (last 30 days)
+GET http://localhost:8000/admin/v2/analytics/sales?days=30
+X-API-Key: {{api_key}}
+
+###
+
+# Get inventory analytics
+GET http://localhost:8000/admin/v2/analytics/inventory
+X-API-Key: {{api_key}}
+
+###
+
+### Candle Management ###
+
+# Create a new candle
+POST http://localhost:8000/admin/v2/
+X-API-Key: {{api_key}}
+Content-Type: application/json
+
+{
+    "name": "Vanilla Dream",
+    "description": "Sweet vanilla scented candle",
+    "price": 15.99,
+    "stock_quantity": 25,
+    "weight_grams": 250,
+    "burn_time_hours": 35,
+    "color": "Cream",
+    "scent": "Vanilla",
+    "material": "Soy Wax",
+    "category_id": 1
+}
+
+###
+
+# List all candles
+GET http://localhost:8000/admin/v2/?skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
+
+# Get specific candle
+GET http://localhost:8000/admin/v2/1
+X-API-Key: {{api_key}}
+
+###
+
+# Update candle
+PUT http://localhost:8000/admin/v2/1
+X-API-Key: {{api_key}}
+Content-Type: application/json
+
+{
+    "name": "Vanilla Dream Deluxe",
+    "description": "Premium sweet vanilla scented candle",
+    "price": 18.99,
+    "stock_quantity": 30,
+    "weight_grams": 300,
+    "burn_time_hours": 40,
+    "color": "Cream",
+    "scent": "Vanilla",
+    "material": "Soy Wax",
+    "category_id": 1
+}
+
+###
+
+# Delete candle
+DELETE http://localhost:8000/admin/v2/deleteid/1
+X-API-Key: {{api_key}}
+
+###
+
+### Category Management ###
+
+# Create category
+POST http://localhost:8000/admin/v2/categories/
+X-API-Key: {{api_key}}
+Content-Type: application/json
+
+{
+    "name": "Seasonal",
+    "description": "Seasonal and holiday candles"
+}
+
+###
+
+# List categories
+GET http://localhost:8000/admin/v2/categories/
+X-API-Key: {{api_key}}
+
+###
+
+# Update category
+PUT http://localhost:8000/admin/v2/categories/1
+X-API-Key: {{api_key}}
+Content-Type: application/json
+
+{
+    "name": "Seasonal & Holiday",
+    "description": "Seasonal and holiday themed candles"
+}
+
+###
+
+# Delete category
+DELETE http://localhost:8000/admin/v2/categories/1
+X-API-Key: {{api_key}}
+
+###
+
+### Tag Management ###
+
+# Create tag
+POST http://localhost:8000/admin/v2/tags/
+X-API-Key: {{api_key}}
+Content-Type: application/json
+
+{
+    "name": "organic"
+}
+
+###
+
+# List tags
+GET http://localhost:8000/admin/v2/tags/
+X-API-Key: {{api_key}}
+
+###
+
+# Delete tag
+DELETE http://localhost:8000/admin/v2/tags/1
+X-API-Key: {{api_key}}
+
+###
+
+### Image Management ###
+
+# Create candle image
+POST http://localhost:8000/admin/v2/images/
+X-API-Key: {{api_key}}
+Content-Type: application/json
+
+{
+    "candle_id": 1,
+    "image_url": "https://example.com/images/vanilla-dream.jpg",
+    "alt_text": "Vanilla Dream Candle"
+}
+
+###
+
+# Get candle images
+GET http://localhost:8000/admin/v2/images/candle/1
+X-API-Key: {{api_key}}
+
+###
+
+# Delete image
+DELETE http://localhost:8000/admin/v2/images/1
+X-API-Key: {{api_key}}
+
+###
+
+### User Management ###
+
+# List users
+GET http://localhost:8000/admin/v2/users/?skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
+
+# Get specific user
+GET http://localhost:8000/admin/v2/users/1
+X-API-Key: {{api_key}}
+
+###
+
+# Delete user
+DELETE http://localhost:8000/admin/v2/users/1
+X-API-Key: {{api_key}}
+
+###
+
+# Get user addresses
+GET http://localhost:8000/admin/v2/users/1/addresses
+X-API-Key: {{api_key}}
+
+###
+
+# Get user payment methods
+GET http://localhost:8000/admin/v2/users/1/payment-methods
+X-API-Key: {{api_key}}
+
+###
+
+### Order Management ###
+
+# List orders
+GET http://localhost:8000/admin/v2/orders/?skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
+
+# List orders by status
+GET http://localhost:8000/admin/v2/orders/?status=pending&skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
+
+# Get specific order
+GET http://localhost:8000/admin/v2/orders/1
+X-API-Key: {{api_key}}
+
+###
+
+# Update order status
+PUT http://localhost:8000/admin/v2/orders/1/status?status=shipped
+X-API-Key: {{api_key}}
+
+###
+
+# Get order items
+GET http://localhost:8000/admin/v2/orders/1/items
+X-API-Key: {{api_key}}
+
+###
+
+### Review Management ###
+
+# List reviews
+GET http://localhost:8000/admin/v2/reviews/?skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
+
+# List reviews by candle
+GET http://localhost:8000/admin/v2/reviews/?candle_id=1&skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
+
+# List reviews by rating
+GET http://localhost:8000/admin/v2/reviews/?rating=5&skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
+
+# Delete review
+DELETE http://localhost:8000/admin/v2/reviews/1
+X-API-Key: {{api_key}}
+
+###
+
+### Notification Management ###
+
+# List notifications
+GET http://localhost:8000/admin/v2/notifications/?skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
+
+# List notifications by user
+GET http://localhost:8000/admin/v2/notifications/?user_id=1&skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
+
+# List unread notifications
+GET http://localhost:8000/admin/v2/notifications/?is_read=false&skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
+
+# Create notification
+POST http://localhost:8000/admin/v2/notifications/
+X-API-Key: {{api_key}}
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "title": "Order Update",
+    "message": "Your order has been shipped!"
+}
+
+###
+
+### User Token Management ###
+
+# List user tokens
+GET http://localhost:8000/admin/v2/user-tokens/?skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
+
+# List tokens by user
+GET http://localhost:8000/admin/v2/user-tokens/?user_id=1&skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
+
+# List tokens by type
+GET http://localhost:8000/admin/v2/user-tokens/?token_type=password_reset&skip=0&limit=10
+X-API-Key: {{api_key}}
+
+###
