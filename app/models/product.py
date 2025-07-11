@@ -32,6 +32,9 @@ class Candle(Base):
     scent = Column(String(100))
     material = Column(String(100))
     category_id = Column(Integer, ForeignKey("categories.id", ondelete="SET NULL"))
+    is_active = Column(Integer, default=1)  # 1 for active, 0 for inactive
+    featured = Column(Integer, default=0)   # 1 for featured, 0 for not featured
+    discount_percentage = Column(DECIMAL(5, 2), default=0.00)
     created_at = Column(TIMESTAMP, default=datetime.utcnow)
     updated_at = Column(TIMESTAMP, default=datetime.utcnow)
 
