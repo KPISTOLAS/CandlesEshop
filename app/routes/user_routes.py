@@ -26,7 +26,7 @@ class CandleRead(BaseModel):
     stock_quantity: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class CategoryRead(BaseModel):
@@ -35,7 +35,7 @@ class CategoryRead(BaseModel):
     description: str | None = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class TagRead(BaseModel):
@@ -44,7 +44,7 @@ class TagRead(BaseModel):
     description: str | None = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class UserRead(BaseModel):
     id: int
@@ -54,7 +54,7 @@ class UserRead(BaseModel):
     profile_picture: str | None = None
     created_at: str | None = None
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class UserUpdate(BaseModel):
@@ -72,7 +72,7 @@ class AddressRead(BaseModel):
     postal_code: str | None = None
     country: str | None = None
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class AddressCreate(BaseModel):
@@ -90,13 +90,13 @@ class OrderRead(BaseModel):
     order_date: str | None = None
     total_amount: float | None = None
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class WishlistRead(BaseModel):
     candle_id: int
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class NotificationRead(BaseModel):
@@ -106,7 +106,7 @@ class NotificationRead(BaseModel):
     is_read: bool
     created_at: str | None = None
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 @router.get("/v2/", response_model=List[CandleRead])
 def get_candles(db: Session = Depends(get_db)):
